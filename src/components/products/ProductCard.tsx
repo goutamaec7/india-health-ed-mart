@@ -4,12 +4,15 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
 import type { Product } from "@/pages/Products";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
+  
   const getStockStatus = () => {
     if (product.stock === 0) {
       return { label: 'Out of Stock', variant: 'destructive' as const };
@@ -41,7 +44,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105 h-full flex flex-col">
+    <Card 
+      className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105 h-full flex flex-col cursor-pointer"
+      onClick={() => navigate(`/products/${product.id}`)}
+    >
       <div className="relative aspect-square overflow-hidden bg-muted">
         {product.image_url ? (
           <img
@@ -105,7 +111,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <CardFooter className="p-4 pt-0">
         <Button
           className="w-full"
-          onClick={handleAddToCart}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddToCart();
+          }}
           disabled={product.stock === 0}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
