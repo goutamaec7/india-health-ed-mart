@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Search, Menu } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { useState } from "react";
 import {
   Sheet,
@@ -7,6 +7,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { HeaderAuth } from "./HeaderAuth";
+import { SearchBar } from "./search/SearchBar";
 
 export const Header = () => {
   const [cartCount] = useState(0);
@@ -44,9 +45,10 @@ export const Header = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Search className="h-5 w-5" />
-            </Button>
+            {/* Desktop Search */}
+            <div className="hidden md:block w-80">
+              <SearchBar />
+            </div>
             
             <HeaderAuth />
             
@@ -68,6 +70,11 @@ export const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-72">
                 <nav className="flex flex-col gap-4 mt-8">
+                  {/* Mobile Search */}
+                  <div className="mb-4">
+                    <SearchBar />
+                  </div>
+                  
                   <a href="/products" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
                     Products
                   </a>
