@@ -47,20 +47,7 @@ const ProductDetail = () => {
   }, [id, navigate]);
 
   const handleAddToCart = () => {
-    if (!product) return;
-    
-    if (product.stock === 0) {
-      toast.error('Product is out of stock');
-      return;
-    }
-
-    if (quantity > product.stock) {
-      toast.error(`Only ${product.stock} items available`);
-      return;
-    }
-
-    // TODO: Implement actual cart functionality
-    toast.success(`Added ${quantity} item(s) to cart`);
+    // Now handled in ProductInfo component
   };
 
   const handleSaveForLater = () => {
