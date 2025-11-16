@@ -94,6 +94,77 @@ export type Database = {
           },
         ]
       }
+      chat_conversations: {
+        Row: {
+          closed_at: string | null
+          created_at: string
+          id: string
+          status: string
+          topic: string
+          user_email: string
+          user_id: string
+          user_name: string
+        }
+        Insert: {
+          closed_at?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          topic: string
+          user_email: string
+          user_id: string
+          user_name: string
+        }
+        Update: {
+          closed_at?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          topic?: string
+          user_email?: string
+          user_id?: string
+          user_name?: string
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          conversation_id: string
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          sender_name: string
+          sender_type: string
+        }
+        Insert: {
+          conversation_id: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message: string
+          sender_name: string
+          sender_type: string
+        }
+        Update: {
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          sender_name?: string
+          sender_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "chat_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       order_items: {
         Row: {
           created_at: string
@@ -403,6 +474,45 @@ export type Database = {
           },
         ]
       }
+      support_tickets: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          status: string
+          ticket_number: string
+          topic: string
+          updated_at: string
+          user_email: string
+          user_id: string | null
+          user_name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          status?: string
+          ticket_number: string
+          topic: string
+          updated_at?: string
+          user_email: string
+          user_id?: string | null
+          user_name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+          ticket_number?: string
+          topic?: string
+          updated_at?: string
+          user_email?: string
+          user_id?: string | null
+          user_name?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -430,6 +540,7 @@ export type Database = {
     }
     Functions: {
       generate_order_number: { Args: never; Returns: string }
+      generate_ticket_number: { Args: never; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
