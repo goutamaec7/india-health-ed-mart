@@ -154,10 +154,7 @@ const Cart = () => {
                 tax={calculateTax()}
                 total={calculateTotal()}
                 items={cartItems}
-                onCheckout={() => {
-                  // TODO: Implement checkout
-                  toast.success('Checkout functionality coming soon!');
-                }}
+                onCheckout={() => navigate('/checkout')}
               />
             </div>
           </div>

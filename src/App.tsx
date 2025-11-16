@@ -16,6 +16,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import SearchResults from "./pages/SearchResults";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
