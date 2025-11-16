@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/button";
 import { QuantitySelector } from "./QuantitySelector";
 import { Heart, ShoppingCart, Package, TrendingUp } from "lucide-react";
 import type { Product } from "@/pages/Products";
+import { addToCart } from "@/lib/api/cart";
+import { toast } from "sonner";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 interface ProductInfoProps {
   product: Product;
@@ -19,6 +24,35 @@ export const ProductInfo = ({
   onAddToCart,
   onSaveForLater,
 }: ProductInfoProps) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  
+  const handleAddToCart = async () => {
+    if (product.stock === 0) {
+      toast.error('Product is out of stock');
+      return;
+    }
+    
+    if (!user) {
+      toast.error('Please login to add items to cart');
+      navigate('/login');
+      return;
+    }
+    
+    setIsAddingToCart(true);
+    try {
+      await addToCart(product.id, quantity);
+      toast.success(`Added ${quantity} item(s) to cart`);
+      onAddToCart();
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast.error('Failed to add to cart');
+    } finally {
+      setIsAddingToCart(false);
+    }
+  };
+  
   const getStockStatus = () => {
     if (product.stock === 0) {
       return { 
@@ -139,11 +173,11 @@ export const ProductInfo = ({
         <Button
           className="w-full h-12 text-base"
           size="lg"
-          onClick={onAddToCart}
-          disabled={product.stock === 0}
+          onClick={handleAddToCart}
+          disabled={product.stock === 0 || isAddingToCart}
         >
           <ShoppingCart className="mr-2 h-5 w-5" />
-          {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+          {isAddingToCart ? 'Adding to Cart...' : product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
         </Button>
         
         <Button

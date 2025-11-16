@@ -5,6 +5,9 @@ import { ShoppingCart } from "lucide-react";
 import type { Product } from "@/pages/Products";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "@/lib/api/cart";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ProductCardProps {
   product: Product;
@@ -12,6 +15,8 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   
   const getStockStatus = () => {
     if (product.stock === 0) {
@@ -34,13 +39,28 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const certifications = getCertifications();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (product.stock === 0) {
       toast.error('Product is out of stock');
       return;
     }
-    // TODO: Implement add to cart functionality
-    toast.success('Added to cart');
+    
+    if (!user) {
+      toast.error('Please login to add items to cart');
+      navigate('/login');
+      return;
+    }
+    
+    setIsAddingToCart(true);
+    try {
+      await addToCart(product.id, 1);
+      toast.success('Added to cart');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast.error('Failed to add to cart');
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   return (
@@ -115,10 +135,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             e.stopPropagation();
             handleAddToCart();
           }}
-          disabled={product.stock === 0}
+          disabled={product.stock === 0 || isAddingToCart}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
-          {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+          {isAddingToCart ? 'Adding...' : product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
         </Button>
       </CardFooter>
     </Card>
