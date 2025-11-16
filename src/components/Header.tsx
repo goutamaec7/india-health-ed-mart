@@ -24,6 +24,9 @@ export const Header = () => {
             
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6">
+              <a href="/products" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Products
+              </a>
               <a href="#healthcare" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 Healthcare
               </a>
@@ -65,6 +68,9 @@ export const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-72">
                 <nav className="flex flex-col gap-4 mt-8">
+                  <a href="/products" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    Products
+                  </a>
                   <a href="#healthcare" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
                     Healthcare Products
                   </a>
