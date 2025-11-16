@@ -44,7 +44,7 @@ export const Header = () => {
               <Search className="h-5 w-5" />
             </Button>
             
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={() => window.location.href = '/register'}>
               <User className="h-5 w-5" />
             </Button>
             
