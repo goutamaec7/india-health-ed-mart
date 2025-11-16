@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Search, User, Menu } from "lucide-react";
+import { ShoppingCart, Search, Menu } from "lucide-react";
 import { useState } from "react";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { HeaderAuth } from "./HeaderAuth";
 
 export const Header = () => {
   const [cartCount] = useState(0);
@@ -44,9 +45,7 @@ export const Header = () => {
               <Search className="h-5 w-5" />
             </Button>
             
-            <Button variant="ghost" size="icon" onClick={() => window.location.href = '/register'}>
-              <User className="h-5 w-5" />
-            </Button>
+            <HeaderAuth />
             
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />
@@ -78,9 +77,6 @@ export const Header = () => {
                   <a href="#contact" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
                     Contact
                   </a>
-                  <div className="pt-4 border-t border-border">
-                    <Button className="w-full">Sign In</Button>
-                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
