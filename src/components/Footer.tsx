@@ -1,13 +1,12 @@
 export const Footer = () => {
-  return (
-    <footer className="bg-card border-t border-border">
+  return <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
-              <span className="text-xl font-bold text-foreground">MedEduTrade</span>
+              <span className="text-xl font-bold text-foreground">Allied Health & Diagnotect</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Your trusted partner for healthcare and educational supplies across India.
@@ -53,6 +52,5 @@ export const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };

@@ -21,12 +21,8 @@ export const Header = () => {
               <a href="/products" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 Products
               </a>
-              <a href="#healthcare" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Healthcare
-              </a>
-              <a href="#educational" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Educational
-              </a>
+              
+              
               <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 About
               </a>
