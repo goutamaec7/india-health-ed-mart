@@ -1,26 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Menu } from "lucide-react";
 import { useState } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { HeaderAuth } from "./HeaderAuth";
 import { SearchBar } from "./search/SearchBar";
-
 export const Header = () => {
   const [cartCount] = useState(0);
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-8">
             <a href="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
-              <span className="text-xl font-bold text-foreground">MedEduTrade</span>
+              <span className="text-xl font-bold text-foreground">Allied Health & Diagnotect   </span>
             </a>
             
             {/* Desktop Navigation */}
@@ -52,18 +45,11 @@ export const Header = () => {
             
             <HeaderAuth />
             
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="relative"
-              onClick={() => window.location.href = '/cart'}
-            >
+            <Button variant="ghost" size="icon" className="relative" onClick={() => window.location.href = '/cart'}>
               <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
+              {cartCount > 0 && <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
                   {cartCount}
-                </span>
-              )}
+                </span>}
             </Button>
 
             {/* Mobile Menu */}
@@ -101,6 +87,5 @@ export const Header = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
