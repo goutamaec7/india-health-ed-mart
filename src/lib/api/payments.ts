@@ -114,21 +114,23 @@ export const getPaymentByOrderId = async (orderId: string) => {
 };
 
 /**
- * Verify Razorpay payment signature
- * Note: This should be done on the backend for security
+ * Verify Razorpay payment signature via secure Edge Function.
+ * The signature MUST be verified server-side; never trust the client.
  */
-export const verifyPaymentSignature = async (
-  orderId: string,
-  paymentId: string,
-  signature: string
-) => {
+export const verifyPaymentSignature = async (params: {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+  payment_id: string;
+  order_id: string;
+}) => {
   try {
-    console.log('💳 Verifying payment signature');
-    
-    // TODO: Implement backend verification via Edge Function
-    // For now, this is a placeholder
-    console.warn('⚠️ Payment signature verification should be done on backend');
-    
+    console.log('💳 Verifying Razorpay signature via edge function');
+    const { data, error } = await supabase.functions.invoke('verify-razorpay-payment', {
+      body: params,
+    });
+    if (error) throw error;
+    if (!data?.verified) throw new Error('Payment signature verification failed');
     return true;
   } catch (error) {
     console.error('❌ Failed to verify payment signature:', error);

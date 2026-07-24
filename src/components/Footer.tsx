@@ -18,21 +18,21 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About Us</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Products</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a></li>
+              <li><a href="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Products</a></li>
+              <li><a href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact Us</a></li>
+              <li><a href="/orders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Track Order</a></li>
+              <li><a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">My Account</a></li>
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Policies */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Categories</h3>
+            <h3 className="font-semibold text-foreground mb-4">Policies</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Healthcare Products</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Educational Products</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">New Arrivals</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Best Sellers</a></li>
+              <li><a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a></li>
+              <li><a href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Refund & Cancellation</a></li>
+              <li><a href="/shipping-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Shipping Policy</a></li>
             </ul>
           </div>
 
